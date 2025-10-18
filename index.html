@@ -4,24 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DaveAI Deployment Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
-        * {
+        :root {
+            --primary: linear-gradient(135deg, #1E90FF, #800000);
+            --bg: #000000;
+            --glass: rgba(255, 255, 255, 0.05);
+            --text: #ffffff;
+            --muted: #228B22;
+            --highlight: #696969;
+            --radius: 16px;
+            --blur: 12px;
+            --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --glow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
             min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: var(--glass);
+            backdrop-filter: blur(var(--blur));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--glow);
+        }
+
+        .status {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .status-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .status-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--highlight);
+        }
+
+        .status-item i {
+            color: var(--highlight);
+        }
+
+        main {
+            flex: 1;
+            padding: 3rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            gap: 2.5rem;
         }
-        
+
         .container {
             width: 100%;
             max-width: 1200px;
@@ -29,27 +102,24 @@
             flex-direction: column;
             align-items: center;
         }
-        
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            width: 100%;
-        }
-        
+
         h1 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 2.8em;
             margin-bottom: 10px;
-            color: #ffcc00;
-            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--glow);
         }
-        
+
         .tagline {
             font-size: 1.2em;
             opacity: 0.9;
             margin-bottom: 20px;
+            color: var(--muted);
         }
-        
+
         .content {
             display: flex;
             flex-wrap: wrap;
@@ -57,56 +127,65 @@
             gap: 30px;
             width: 100%;
         }
-        
+
         .deploy-section {
             flex: 1;
             min-width: 400px;
             max-width: 500px;
         }
-        
+
         .resources-section {
             flex: 1;
             min-width: 400px;
             max-width: 500px;
         }
-        
+
         .card {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass);
             padding: 25px;
-            border-radius: 15px;
+            border-radius: var(--radius);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(var(--blur));
             margin-bottom: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
         }
-        
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), var(--glow);
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+
         .card h2 {
-            color: #ffcc00;
+            font-family: 'Orbitron', sans-serif;
             margin-bottom: 20px;
             font-size: 1.8em;
             text-align: center;
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
+
         /* Login Box Styles */
         .login-box {
             width: 100%;
             position: relative;
         }
-        
+
         .login-box h2 {
             text-align: center;
-            color: #ffcc00;
             font-size: 2em;
             margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-        
+
         .user-box {
             position: relative;
             margin-bottom: 30px;
         }
-        
+
         .user-box input {
             width: 100%;
             padding: 10px 0;
@@ -114,144 +193,62 @@
             color: white;
             margin-bottom: 30px;
             border: none;
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
             outline: none;
             background: transparent;
         }
-        
+
         .user-box label {
             position: absolute;
             top: 0;
             left: 0;
             padding: 10px 0;
             font-size: 16px;
-            color: white;
+            color: rgba(255, 255, 255, 0.7);
             pointer-events: none;
             transition: 0.5s;
         }
-        
+
         .user-box input:focus ~ label,
         .user-box input:valid ~ label {
             top: -20px;
             left: 0;
-            color: #ffcc00;
+            color: var(--highlight);
             font-size: 12px;
         }
-        
+
         button {
             position: relative;
             display: inline-block;
             padding: 10px 20px;
-            color: #ffcc00;
+            color: white;
             font-size: 16px;
             text-decoration: none;
             text-transform: uppercase;
             overflow: hidden;
-            transition: 0.5s;
+            transition: var(--transition);
             margin-top: 10px;
             letter-spacing: 4px;
-            background: transparent;
-            border: none;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--highlight);
             cursor: pointer;
             width: 100%;
+            font-family: 'JetBrains Mono', monospace;
+            border-radius: 50px;
         }
-        
+
         button:hover {
-            background: #ffcc00;
-            color: #16213e;
-            border-radius: 5px;
-            box-shadow: 0 0 5px #ffcc00,
-                        0 0 25px #ffcc00,
-                        0 0 50px #ffcc00,
-                        0 0 100px #ffcc00;
+            background: rgba(0, 212, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+            transform: scale(1.05);
         }
-        
-        button span {
-            position: absolute;
-            display: block;
-        }
-        
-        button span:nth-child(1) {
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ffcc00);
-            animation: btn-anim1 1s linear infinite;
-        }
-        
-        @keyframes btn-anim1 {
-            0% {
-                left: -100%;
-            }
-            50%,100% {
-                left: 100%;
-            }
-        }
-        
-        button span:nth-child(2) {
-            top: -100%;
-            right: 0;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, #ffcc00);
-            animation: btn-anim2 1s linear infinite;
-            animation-delay: .25s;
-        }
-        
-        @keyframes btn-anim2 {
-            0% {
-                top: -100%;
-            }
-            50%,100% {
-                top: 100%;
-            }
-        }
-        
-        button span:nth-child(3) {
-            bottom: 0;
-            right: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(270deg, transparent, #ffcc00);
-            animation: btn-anim3 1s linear infinite;
-            animation-delay: .5s;
-        }
-        
-        @keyframes btn-anim3 {
-            0% {
-                right: -100%;
-            }
-            50%,100% {
-                right: 100%;
-            }
-        }
-        
-        button span:nth-child(4) {
-            bottom: -100%;
-            left: 0;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(360deg, transparent, #ffcc00);
-            animation: btn-anim4 1s linear infinite;
-            animation-delay: .75s;
-        }
-        
-        @keyframes btn-anim4 {
-            0% {
-                bottom: -100%;
-            }
-            50%,100% {
-                bottom: 100%;
-            }
-        }
-        
+
         .resource-links {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-        
+
         .resource-link {
             display: block;
             padding: 15px;
@@ -263,22 +260,114 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .resource-link:hover {
-            background: rgba(255, 204, 0, 0.2);
+            background: rgba(0, 212, 255, 0.1);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 212, 255, 0.2);
         }
-        
+
         .resource-link.session {
             background: rgba(76, 175, 80, 0.2);
             border-color: rgba(76, 175, 80, 0.4);
         }
-        
+
         .resource-link.session:hover {
             background: rgba(76, 175, 80, 0.3);
         }
-        
+
+        /* Tools Section */
+        .tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .tool {
+            background: var(--glass);
+            backdrop-filter: blur(var(--blur));
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .tool:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), var(--glow);
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+
+        .tool:hover::before {
+            opacity: 1;
+        }
+
+        .tool i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: var(--transition);
+        }
+
+        .tool h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-top: 1rem;
+            text-align: center;
+            max-width: 800px;
+            padding: 1rem;
+            border-radius: var(--radius);
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .note a {
+            color: var(--highlight);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .note a:hover {
+            text-shadow: 0 0 10px var(--highlight);
+        }
+
         footer {
             margin-top: 40px;
             text-align: center;
@@ -286,93 +375,218 @@
             width: 100%;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         footer p {
             margin: 10px 0;
             opacity: 0.8;
         }
-        
+
         .powered-by {
             font-weight: bold;
-            color: #ffcc00;
+            color: var(--highlight);
         }
-        
+
         @media (max-width: 900px) {
+            header {
+                padding: 1rem 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            main {
+                padding: 1.5rem;
+            }
+
             .content {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .deploy-section, .resources-section {
                 min-width: 100%;
+            }
+
+            .tools {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <header>
+        <div class="logo">Dave</div>
+        <div class="status">
+            <div class="status-item"><i class="fas fa-bolt"></i> <span id="battery">--%</span></div>
+            <div class="status-item"><i class="fas fa-wifi"></i> <span id="ip">Loading...</span></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
             <h1>𝘿𝙖𝙫𝙚𝘼𝙄 Deployment Hub</h1>
             <p class="tagline">Deploy your bot with GitHub verification and access essential resources</p>
-        </header>
-        
-        <div class="content">
-            <div class="deploy-section">
-                <div class="card">
-                    <div class="login-box">
-                        <h2>Deploy DaveAI</h2>
-                        <form id="deployForm">
-                            <div class="user-box">
-                                <input type="text" id="name" name="username" required="">
-                                <label>Enter Your GitHub Username</label>
-                            </div>
-                            <button type="submit">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                Deploy
-                            </button>
-                        </form>
+
+            <div class="content">
+                <div class="deploy-section">
+                    <div class="card">
+                        <div class="login-box">
+                            <h2>Deploy DaveAI</h2>
+                            <form id="deployForm">
+                                <div class="user-box">
+                                    <input type="text" id="name" name="username" required="">
+                                    <label>Enter Your GitHub Username</label>
+                                </div>
+                                <button type="submit">
+                                    <i class="fas fa-rocket"></i> Deploy
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="resources-section">
-                <div class="card">
-                    <h2>Essential Resources</h2>
-                    <div class="resource-links">
-                        <a href="https://davesessionpairing-ndde.onrender.com" class="resource-link session">
-                            🔑 Get Session Pairing Code
-                        </a>
-                        <a href="https://github.com/gifteddevsmd/Dave-Ai" class="resource-link">
-                            📂 View Latest Repository
-                        </a>
-                        <a href="#" class="resource-link">
-                            📚 Documentation & Guides
-                        </a>
-                        <a href="#" class="resource-link">
-                            🛠️ Troubleshooting & Support
-                        </a>
+
+                <div class="resources-section">
+                    <div class="card">
+                        <h2>Essential Resources</h2>
+                        <div class="resource-links">
+                            <a href="https://davesessionpairing-ndde.onrender.com" class="resource-link session">
+                                <i class="fas fa-link"></i> Get Session Pairing Code
+                            </a>
+                            <a href="https://github.com/gifteddevsmd/Dave-Ai" class="resource-link">
+                                <i class="fab fa-github"></i> View Latest Repository
+                            </a>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-book"></i> Documentation & Guides
+                            </a>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-tools"></i> Troubleshooting & Support
+                            </a>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="card">
-                    <h2>About DaveAI</h2>
-                    <p>DaveAI is a powerful WhatsApp bot with advanced features for automation, moderation, and entertainment. Deploy your own instance with GitHub verification for security.</p>
-                    <p style="margin-top: 15px;">Make sure you've forked the repository before deploying!</p>
+
+                    <div class="card">
+                        <h2>About DaveAI</h2>
+                        <p>DaveAI is a powerful WhatsApp bot with advanced features for automation, moderation, and entertainment. Deploy your own instance with GitHub verification for security.</p>
+                        <p style="margin-top: 15px; color: var(--muted);">Make sure you've forked the repository before deploying!</p>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <footer>
-            <p>💬 DM for free guidance and support ❤️✨</p>
-            <p class="powered-by">⚡ Powered by DaveAI ⚡</p>
-        </footer>
-    </div>
+
+        <!-- Support Tools Section -->
+        <div class="tools">
+            <div class="tool" onclick="window.open(`https://davedigitalsolutions.com`)">
+                <i class="fas fa-globe"></i>
+                <h3>Support Owner Wycliffe Host Website Page</h3>
+                <p class="muted">Host Website</p>
+            </div>
+            <div class="tool" onclick="window.open(`https://wa.me/254104260236?text=Hello sir, I need support for DaveAI`)">
+                <i class="fas fa-headset"></i>
+                <h3>CONTACT OWNER</h3>
+                <p class="muted">Developer and Support your project</p>
+            </div>
+            <div class="tool" onclick="window.open(`https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k`)">
+                <i class="fas fa-broadcast-tower"></i>
+                <h3>WA CHANNEL</h3>
+                <p class="muted">Get all Bots Update and New Script here</p>
+            </div>
+        </div>
+
+        <div class="note">
+            If you encounter any issues, please contact the developer for support. 🤝
+        </div>
+    </main>
+
+    <footer>
+        <p>💬 DM for free guidance and support ❤️✨</p>
+        <p class="powered-by">⚡ Powered by DaveAI ⚡</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
+        // Smooth animations
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Update clock in title
+        const updateTime = () => {
+            const update = () => {
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
+                document.title = `DaveAI Deployment Hub | ${timeStr}`;
+            };
+            update();
+            setInterval(update, 1000);
+        }
+
+        // Battery status
+        const updateBattery = async () => {
+            if (navigator.getBattery) {
+                try {
+                    const battery = await navigator.getBattery();
+                    const setBattery = () => {
+                        const batteryPercent = Math.round(battery.level * 100);
+                        const batteryElement = document.getElementById('battery');
+                        batteryElement.innerText = `${batteryPercent}%`;
+
+                        // Add battery icon based on level
+                        let batteryIcon = 'fa-bolt';
+                        if (batteryPercent <= 20) batteryIcon = 'fa-battery-quarter';
+                        else if (batteryPercent <= 50) batteryIcon = 'fa-battery-half';
+                        else if (batteryPercent <= 80) batteryIcon = 'fa-battery-three-quarters';
+                        else if (batteryPercent <= 100) batteryIcon = 'fa-battery-full';
+
+                        batteryElement.previousElementSibling.className = `fas ${batteryIcon}`;
+                    };
+
+                    battery.addEventListener('levelchange', setBattery);
+                    battery.addEventListener('chargingchange', setBattery);
+                    setBattery();
+                } catch (error) {
+                    console.error('Battery API error:', error);
+                }
+            }
+        }
+
+        // IP address fetch
+        const fetchIP = async () => {
+            try {
+                const res = await fetch('https://api.ipify.org?format=json');
+                const data = await res.json();
+                document.getElementById('ip').textContent = data.ip;
+            } catch {
+                document.getElementById('ip').textContent = 'Offline';
+            }
+        }
+
+        // Tool hover effects
+        const setupToolHover = () => {
+            const tools = document.querySelectorAll('.tool');
+            tools.forEach(tool => {
+                tool.addEventListener('mouseenter', () => {
+                    tool.style.transform = 'translateY(-8px)';
+                });
+                tool.addEventListener('mouseleave', () => {
+                    tool.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // Initialize everything
+        const init = () => {
+            updateTime();
+            updateBattery();
+            fetchIP();
+            setupToolHover();
+        };
+
+        window.addEventListener('load', init);
+
+        // Original deployment form functionality
         document.getElementById('deployForm').addEventListener('submit', async function(event) {
             event.preventDefault();
 
