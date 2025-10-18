@@ -34,7 +34,7 @@
             flex-direction: column;
             min-height: 100vh;
             line-height: 1.6;
-            font-size: 14px; /* Fixed font size */
+            font-size: 14px;
         }
 
         header {
@@ -281,13 +281,14 @@
             background: rgba(76, 175, 80, 0.3);
         }
 
-        /* Tools Section */
-        .tools {
+        /* Support Tools Section */
+        .support-tools {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             width: 100%;
             max-width: 1200px;
+            margin-top: 1rem;
         }
 
         .tool {
@@ -362,17 +363,6 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .note a {
-            color: var(--highlight);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .note a:hover {
-            text-shadow: 0 0 10px var(--highlight);
-        }
-
         footer {
             margin-top: 2rem;
             text-align: center;
@@ -412,7 +402,7 @@
                 min-width: 100%;
             }
 
-            .tools {
+            .support-tools {
                 grid-template-columns: 1fr;
             }
             
@@ -435,6 +425,25 @@
         <div class="container">
             <h1>𝘿𝙖𝙫𝙚𝘼𝙄 Deployment Hub</h1>
             <p class="tagline">Deploy your bot with GitHub verification and access essential resources</p>
+
+            <!-- Support Tools Section - Moved UP -->
+            <div class="support-tools">
+                <div class="tool" onclick="window.open(`https://davedigitalsolutions.com`)">
+                    <i class="fas fa-globe"></i>
+                    <h3>Support Owner Website</h3>
+                    <p class="muted">Visit Wycliffe's Host Website</p>
+                </div>
+                <div class="tool" onclick="window.open(`https://wa.me/254104260236?text=Hello sir, I need support for DaveAI`)">
+                    <i class="fas fa-headset"></i>
+                    <h3>CONTACT OWNER</h3>
+                    <p class="muted">Developer and Support your project</p>
+                </div>
+                <div class="tool" onclick="window.open(`https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k`)">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <h3>WA CHANNEL</h3>
+                    <p class="muted">Get all Bots Update and New Script here</p>
+                </div>
+            </div>
 
             <div class="content">
                 <div class="deploy-section">
@@ -464,12 +473,6 @@
                             <a href="https://github.com/gifteddevsmd/Dave-Ai" class="resource-link">
                                 <i class="fab fa-github"></i> View Latest Repository
                             </a>
-                            <a href="https://wa.me/254104260236?text=Hello sir, I need support for DaveAI" class="resource-link">
-                                <i class="fas fa-headset"></i> Contact Owner
-                            </a>
-                            <a href="https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k" class="resource-link">
-                                <i class="fas fa-broadcast-tower"></i> WhatsApp Channel
-                            </a>
                         </div>
                     </div>
 
@@ -479,25 +482,6 @@
                         <p style="margin-top: 15px; color: var(--muted);">Make sure you've forked the repository before deploying!</p>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Support Tools Section -->
-        <div class="tools">
-            <div class="tool" onclick="window.open(`https://davedigitalsolutions.com`)">
-                <i class="fas fa-globe"></i>
-                <h3>Support Owner Website</h3>
-                <p class="muted">Visit Wycliffe's Host Website</p>
-            </div>
-            <div class="tool" onclick="window.open(`https://wa.me/254104260236?text=Hello sir, I need support for DaveAI`)">
-                <i class="fas fa-headset"></i>
-                <h3>CONTACT OWNER</h3>
-                <p class="muted">Developer and Support your project</p>
-            </div>
-            <div class="tool" onclick="window.open(`https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k`)">
-                <i class="fas fa-broadcast-tower"></i>
-                <h3>WA CHANNEL</h3>
-                <p class="muted">Get all Bots Update and New Script here</p>
             </div>
         </div>
 
