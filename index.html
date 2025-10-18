@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaveAI Deployment Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+        
+        .tagline {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+        }
+        
+        .deploy-section {
+            flex: 1;
+            min-width: 400px;
+            max-width: 500px;
+        }
+        
+        .resources-section {
+            flex: 1;
+            min-width: 400px;
+            max-width: 500px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card h2 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+        
+        /* Login Box Styles */
+        .login-box {
+            width: 100%;
+            position: relative;
+        }
+        
+        .login-box h2 {
+            text-align: center;
+            color: #ffcc00;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .user-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .user-box input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: white;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid white;
+            outline: none;
+            background: transparent;
+        }
+        
+        .user-box label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            color: white;
+            pointer-events: none;
+            transition: 0.5s;
+        }
+        
+        .user-box input:focus ~ label,
+        .user-box input:valid ~ label {
+            top: -20px;
+            left: 0;
+            color: #ffcc00;
+            font-size: 12px;
+        }
+        
+        button {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            color: #ffcc00;
+            font-size: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: 0.5s;
+            margin-top: 10px;
+            letter-spacing: 4px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        button:hover {
+            background: #ffcc00;
+            color: #16213e;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #ffcc00,
+                        0 0 25px #ffcc00,
+                        0 0 50px #ffcc00,
+                        0 0 100px #ffcc00;
+        }
+        
+        button span {
+            position: absolute;
+            display: block;
+        }
+        
+        button span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffcc00);
+            animation: btn-anim1 1s linear infinite;
+        }
+        
+        @keyframes btn-anim1 {
+            0% {
+                left: -100%;
+            }
+            50%,100% {
+                left: 100%;
+            }
+        }
+        
+        button span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #ffcc00);
+            animation: btn-anim2 1s linear infinite;
+            animation-delay: .25s;
+        }
+        
+        @keyframes btn-anim2 {
+            0% {
+                top: -100%;
+            }
+            50%,100% {
+                top: 100%;
+            }
+        }
+        
+        button span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #ffcc00);
+            animation: btn-anim3 1s linear infinite;
+            animation-delay: .5s;
+        }
+        
+        @keyframes btn-anim3 {
+            0% {
+                right: -100%;
+            }
+            50%,100% {
+                right: 100%;
+            }
+        }
+        
+        button span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #ffcc00);
+            animation: btn-anim4 1s linear infinite;
+            animation-delay: .75s;
+        }
+        
+        @keyframes btn-anim4 {
+            0% {
+                bottom: -100%;
+            }
+            50%,100% {
+                bottom: 100%;
+            }
+        }
+        
+        .resource-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .resource-link {
+            display: block;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .resource-link:hover {
+            background: rgba(255, 204, 0, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .resource-link.session {
+            background: rgba(76, 175, 80, 0.2);
+            border-color: rgba(76, 175, 80, 0.4);
+        }
+        
+        .resource-link.session:hover {
+            background: rgba(76, 175, 80, 0.3);
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        footer p {
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+        
+        .powered-by {
+            font-weight: bold;
+            color: #ffcc00;
+        }
+        
+        @media (max-width: 900px) {
+            .content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .deploy-section, .resources-section {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>𝘿𝙖𝙫𝙚𝘼𝙄 Deployment Hub</h1>
+            <p class="tagline">Deploy your bot with GitHub verification and access essential resources</p>
+        </header>
+        
+        <div class="content">
+            <div class="deploy-section">
+                <div class="card">
+                    <div class="login-box">
+                        <h2>Deploy DaveAI</h2>
+                        <form id="deployForm">
+                            <div class="user-box">
+                                <input type="text" id="name" name="username" required="">
+                                <label>Enter Your GitHub Username</label>
+                            </div>
+                            <button type="submit">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                Deploy
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resources-section">
+                <div class="card">
+                    <h2>Essential Resources</h2>
+                    <div class="resource-links">
+                        <a href="https://davesessionpairing-ndde.onrender.com" class="resource-link session">
+                            🔑 Get Session Pairing Code
+                        </a>
+                        <a href="https://github.com/sesco001/Makamesco-Ai" class="resource-link">
+                            📂 View Latest Repository
+                        </a>
+                        <a href="#" class="resource-link">
+                            📚 Documentation & Guides
+                        </a>
+                        <a href="#" class="resource-link">
+                            🛠️ Troubleshooting & Support
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>About DaveAI</h2>
+                    <p>DaveAI is a powerful WhatsApp bot with advanced features for automation, moderation, and entertainment. Deploy your own instance with GitHub verification for security.</p>
+                    <p style="margin-top: 15px;">Make sure you've forked the repository before deploying!</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>💬 DM for free guidance and support ❤️✨</p>
+            <p class="powered-by">⚡ Powered by DaveAI ⚡</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        document.getElementById('deployForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const gitApi = 'https://api.github.com';
+            const owner = 'Tennor-modz';
+            const username = document.getElementById('name').value.trim();
+
+            if (username.length === 0 || username === owner) {
+                alert("Please enter your GitHub username. You cannot use the developer's username.");
+                return;
+            }
+
+            try {
+                const user = await axios.get(`${gitApi}/users/${username}`);
+
+                try {
+                    await axios.get(`${gitApi}/repos/${username}/Flash-Md-V2`);
+                    window.location.replace(`https://dashboard.heroku.com/new?template=https://github.com/${username}/trashcore-system`);
+                } catch (v2Error) {
+                    try {
+                        await axios.get(`${gitApi}/repos/${username}/Flash-Md`);
+                        window.location.replace(`https://dashboard.heroku.com/new?template=https://github.com/${username}/trashcore-system`);
+                    } catch (oldError) {
+                        alert("It looks like you haven't forked the repository yet.\nClick 'OK' to fork.");
+                        window.location.replace(`https://github.com/${owner}/trashcore-system/fork`);
+                    }
+                }
+            } catch (userError) {
+                alert('Invalid GitHub username. Please ensure the username is correct and try again.');
+            }
+        });
+    </script>
+</body>
+</html>
