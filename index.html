@@ -345,7 +345,7 @@
                         <a href="https://davesessionpairing-ndde.onrender.com" class="resource-link session">
                             🔑 Get Session Pairing Code
                         </a>
-                        <a href="https://github.com/sesco001/Makamesco-Ai" class="resource-link">
+                        <a href="https://github.com/gifteddevsmd/Dave-Ai" class="resource-link">
                             📂 View Latest Repository
                         </a>
                         <a href="#" class="resource-link">
@@ -377,7 +377,7 @@
             event.preventDefault();
 
             const gitApi = 'https://api.github.com';
-            const owner = 'Tennor-modz';
+            const owner = 'gifteddevsmd';
             const username = document.getElementById('name').value.trim();
 
             if (username.length === 0 || username === owner) {
@@ -389,15 +389,15 @@
                 const user = await axios.get(`${gitApi}/users/${username}`);
 
                 try {
-                    await axios.get(`${gitApi}/repos/${username}/Flash-Md-V2`);
-                    window.location.replace(`https://dashboard.heroku.com/new?template=https://github.com/${username}/trashcore-system`);
+                    await axios.get(`${gitApi}/repos/${username}/gifteddevsmd`);
+                    window.location.replace(`https://dashboard.heroku.com/new?template=https://github.com/${username}/Dave-Ai`);
                 } catch (v2Error) {
                     try {
-                        await axios.get(`${gitApi}/repos/${username}/Flash-Md`);
-                        window.location.replace(`https://dashboard.heroku.com/new?template=https://github.com/${username}/trashcore-system`);
+                        await axios.get(`${gitApi}/repos/${username}/Dave-Ai`);
+                        window.location.replace(`https://dashboard.heroku.com/new?template=https://github.com/${username}/Dave-Ai`);
                     } catch (oldError) {
                         alert("It looks like you haven't forked the repository yet.\nClick 'OK' to fork.");
-                        window.location.replace(`https://github.com/${owner}/trashcore-system/fork`);
+                        window.location.replace(`https://github.com/${owner}/Dave-Ai/fork`);
                     }
                 }
             } catch (userError) {
