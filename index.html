@@ -281,74 +281,31 @@
             background: rgba(76, 175, 80, 0.3);
         }
 
-        /* Support Tools Section */
-        .support-tools {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            width: 100%;
-            max-width: 1200px;
-            margin-top: 1rem;
+        .resource-link.contact {
+            background: rgba(255, 193, 7, 0.2);
+            border-color: rgba(255, 193, 7, 0.4);
         }
 
-        .tool {
-            background: var(--glass);
-            backdrop-filter: blur(var(--blur));
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
-            transition: var(--transition);
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
+        .resource-link.contact:hover {
+            background: rgba(255, 193, 7, 0.3);
         }
 
-        .tool::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: var(--transition);
+        .resource-link.channel {
+            background: rgba(33, 150, 243, 0.2);
+            border-color: rgba(33, 150, 243, 0.4);
         }
 
-        .tool:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), var(--glow);
-            border-color: rgba(0, 212, 255, 0.2);
+        .resource-link.channel:hover {
+            background: rgba(33, 150, 243, 0.3);
         }
 
-        .tool:hover::before {
-            opacity: 1;
+        .resource-link.website {
+            background: rgba(156, 39, 176, 0.2);
+            border-color: rgba(156, 39, 176, 0.4);
         }
 
-        .tool i {
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
-            display: block;
-            background: var(--primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: var(--transition);
-        }
-
-        .tool h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            letter-spacing: 1px;
-            font-size: 1.1rem;
-        }
-
-        .muted {
-            color: var(--muted);
-            font-size: 0.85rem;
+        .resource-link.website:hover {
+            background: rgba(156, 39, 176, 0.3);
         }
 
         .note {
@@ -401,10 +358,6 @@
             .deploy-section, .resources-section {
                 min-width: 100%;
             }
-
-            .support-tools {
-                grid-template-columns: 1fr;
-            }
             
             h1 {
                 font-size: 1.7rem;
@@ -426,26 +379,36 @@
             <h1>𝘿𝙖𝙫𝙚𝘼𝙄 Deployment Hub</h1>
             <p class="tagline">Deploy your bot with GitHub verification and access essential resources</p>
 
-            <!-- Support Tools Section - Moved UP -->
-            <div class="support-tools">
-                <div class="tool" onclick="window.open(`https://davedigitalsolutions.com`)">
-                    <i class="fas fa-globe"></i>
-                    <h3>Support Owner Website</h3>
-                    <p class="muted">Visit Wycliffe's Host Website</p>
-                </div>
-                <div class="tool" onclick="window.open(`https://wa.me/254104260236?text=Hello sir, I need support for DaveAI`)">
-                    <i class="fas fa-headset"></i>
-                    <h3>CONTACT OWNER</h3>
-                    <p class="muted">Developer and Support your project</p>
-                </div>
-                <div class="tool" onclick="window.open(`https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k`)">
-                    <i class="fas fa-broadcast-tower"></i>
-                    <h3>WA CHANNEL</h3>
-                    <p class="muted">Get all Bots Update and New Script here</p>
-                </div>
-            </div>
-
             <div class="content">
+                <div class="resources-section">
+                    <div class="card">
+                        <h2>Essential Resources</h2>
+                        <div class="resource-links">
+                            <a href="https://davesessionpairing-ndde.onrender.com" class="resource-link session">
+                                <i class="fas fa-link"></i> Get Session Pairing Code
+                            </a>
+                            <a href="https://github.com/gifteddevsmd/Dave-Ai" class="resource-link">
+                                <i class="fab fa-github"></i> View Latest Repository
+                            </a>
+                            <a href="https://davedigitalsolutions.com" class="resource-link website">
+                                <i class="fas fa-globe"></i> Support Owner Website
+                            </a>
+                            <a href="https://wa.me/254104260236?text=Hello sir, I need support for DaveAI" class="resource-link contact">
+                                <i class="fas fa-headset"></i> Contact Owner
+                            </a>
+                            <a href="https://whatsapp.com/channel/0029VbApvFQ2Jl84lhONkc3k" class="resource-link channel">
+                                <i class="fas fa-broadcast-tower"></i> WhatsApp Channel
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2>About DaveAI</h2>
+                        <p>DaveAI is a powerful WhatsApp bot with advanced features for automation, moderation, and entertainment. Deploy your own instance with GitHub verification for security.</p>
+                        <p style="margin-top: 15px; color: var(--muted);">Make sure you've forked the repository before deploying!</p>
+                    </div>
+                </div>
+
                 <div class="deploy-section">
                     <div class="card">
                         <div class="login-box">
@@ -460,26 +423,6 @@
                                 </button>
                             </form>
                         </div>
-                    </div>
-                </div>
-
-                <div class="resources-section">
-                    <div class="card">
-                        <h2>Essential Resources</h2>
-                        <div class="resource-links">
-                            <a href="https://davesessionpairing-ndde.onrender.com" class="resource-link session">
-                                <i class="fas fa-link"></i> Get Session Pairing Code
-                            </a>
-                            <a href="https://github.com/gifteddevsmd/Dave-Ai" class="resource-link">
-                                <i class="fab fa-github"></i> View Latest Repository
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h2>About DaveAI</h2>
-                        <p>DaveAI is a powerful WhatsApp bot with advanced features for automation, moderation, and entertainment. Deploy your own instance with GitHub verification for security.</p>
-                        <p style="margin-top: 15px; color: var(--muted);">Make sure you've forked the repository before deploying!</p>
                     </div>
                 </div>
             </div>
@@ -557,25 +500,11 @@
             }
         }
 
-        // Tool hover effects
-        const setupToolHover = () => {
-            const tools = document.querySelectorAll('.tool');
-            tools.forEach(tool => {
-                tool.addEventListener('mouseenter', () => {
-                    tool.style.transform = 'translateY(-8px)';
-                });
-                tool.addEventListener('mouseleave', () => {
-                    tool.style.transform = 'translateY(0)';
-                });
-            });
-        }
-
         // Initialize everything
         const init = () => {
             updateTime();
             updateBattery();
             fetchIP();
-            setupToolHover();
         };
 
         window.addEventListener('load', init);
