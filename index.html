@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
+        /* ALL YOUR ORIGINAL CSS STAYS EXACTLY THE SAME */
         :root {
             --primary: linear-gradient(135deg, #1E90FF, #800000);
             --bg: #000000;
@@ -358,7 +359,7 @@
             .deploy-section, .resources-section {
                 min-width: 100%;
             }
-            
+
             h1 {
                 font-size: 1.7rem;
             }
@@ -509,7 +510,7 @@
 
         window.addEventListener('load', init);
 
-        // Original deployment form functionality
+        // FIXED deployment form functionality - REMOVED DEVELOPER NAME RESTRICTION
         document.getElementById('deployForm').addEventListener('submit', async function(event) {
             event.preventDefault();
 
@@ -517,8 +518,9 @@
             const owner = 'gifteddevsmd';
             const username = document.getElementById('name').value.trim();
 
-            if (username.length === 0 || username === owner) {
-                alert("Please enter your GitHub username. You cannot use the developer's username.");
+            // FIX: Only check if username is empty, removed developer name restriction
+            if (username.length === 0) {
+                alert("Please enter your GitHub username.");
                 return;
             }
 
